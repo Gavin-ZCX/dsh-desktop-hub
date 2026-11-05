@@ -23,7 +23,6 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
    - 全局快捷键 `Ctrl + Shift + L`（Mac: `Cmd + Shift + L`）无感切换。
 5. **系统与资产快捷辅助**：
    - 一键批量重建 Obsidian 资料库共享软链（`relink_all.py --apply`）；
-   - 一键生成/修复 Windows 桌面快捷方式。
 
 ## 安装与配置
 
@@ -48,9 +47,9 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
 
 | 配置项 | 用途 | 未配置时 |
 |---|---|---|
-| `agentWorkspace` | 中枢工作区根目录 | 同步、比对、快捷方式功能返回“未配置”提示 |
+| `agentWorkspace` | 中枢工作区根目录 | 同步、比对功能返回“未配置”提示 |
 | `baselineRoot` | 基线目录所在位置（目录名 `YYYY-MM-DD`，同日修订加 `-N` 后缀），面板显示名称最新的一份 | 默认 `<agentWorkspace>/deploy/dsh/baselines` |
-| `scriptsDir` | `dsh-profile-sync.ps1`、`create-desktop-shortcut.ps1` 所在目录 | 默认 `<agentWorkspace>/deploy/dsh` |
+| `scriptsDir` | `dsh-profile-sync.ps1` 所在目录 | 默认 `<agentWorkspace>/deploy/dsh` |
 | `obsidianShared` | Obsidian 共享配置目录（含 `relink_all.py`） | Obsidian 链接重建功能返回“未配置”提示 |
 
 ## 关闭 DSH 后自动对齐（v1.3.0 起）
