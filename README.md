@@ -30,7 +30,7 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
 在 DSH Desktop profile 的 `package.json` 中按版本标签引用：
 
 ```json
-"dsh-desktop-hub": "github:<owner>/dsh-desktop-hub#v1.1.0"
+"dsh-desktop-hub": "github:<owner>/dsh-desktop-hub#v1.2.0"
 ```
 
 并把 `dsh-desktop-hub` 加入 `dsh.profile.bundles`。插件源码不写死任何本机路径，在 profile 的 `cordis.patch.yml` 中配置：
@@ -42,15 +42,15 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
     enabled: true
     agentWorkspace: "D:/path/to/your/workspace"   # 必填；也可用环境变量 DSH_AGENT_WORKSPACE
     obsidianShared: "D:/path/to/obsidian-shared"  # 可选；也可用环境变量 DSH_OBSIDIAN_SHARED
-    # baselineRoot: 默认 <agentWorkspace>/ops/dsh-profile
-    # scriptsDir:   默认 <agentWorkspace>/ops/scripts
+    # baselineRoot: 默认 <agentWorkspace>/deploy/dsh/baselines
+    # scriptsDir:   默认 <agentWorkspace>/deploy/dsh
 ```
 
 | 配置项 | 用途 | 未配置时 |
 |---|---|---|
 | `agentWorkspace` | 中枢工作区根目录 | 同步、比对、快捷方式功能返回“未配置”提示 |
-| `baselineRoot` | 按日期命名的基线目录所在位置，面板显示其中最新一份 | 默认 `<agentWorkspace>/ops/dsh-profile` |
-| `scriptsDir` | `dsh-profile-sync.ps1`、`create-desktop-shortcut.ps1` 所在目录 | 默认 `<agentWorkspace>/ops/scripts` |
+| `baselineRoot` | 基线目录所在位置（目录名 `YYYY-MM-DD`，同日修订加 `-N` 后缀），面板显示名称最新的一份 | 默认 `<agentWorkspace>/deploy/dsh/baselines` |
+| `scriptsDir` | `dsh-profile-sync.ps1`、`create-desktop-shortcut.ps1` 所在目录 | 默认 `<agentWorkspace>/deploy/dsh` |
 | `obsidianShared` | Obsidian 共享配置目录（含 `relink_all.py`） | Obsidian 链接重建功能返回“未配置”提示 |
 
 ## 注意
