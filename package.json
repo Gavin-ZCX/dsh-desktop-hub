@@ -1,6 +1,6 @@
 {
   "name": "dsh-desktop-hub",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "DeepSeek Harness 桌面环境控制与跨机中枢可视化面板 (退出行为/中枢同步/外观快捷设置)",
   "type": "module",
   "main": "./lib/index.js",
