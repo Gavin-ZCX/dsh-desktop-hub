@@ -13,8 +13,8 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
    - 解决每次退出都需要去托盘右键退出的繁琐操作。
 3. **跨机中枢双向同步 (Central Hub Sync)**：
    - 可视化展示当前 PC 客户端与所配置中枢工作区（`agentWorkspace`）基准的状态；
-   - 一键在线执行差异比对（Diff）、提交改动到中枢基准（Push）；
-   - 对齐到中枢（Pull）：先显示对齐计划，确认后安排一个独立于 DSH 的后台任务——关闭 DSH 后自动执行 `Pull -Apply`，成功后重新打开 DSH，失败不重开并弹窗提示日志位置；面板显示“已安排”状态，可取消，并显示上次结果；
+   - 比对差异：先从 GitHub 拉取最新基线再比对；发布本机配置：拉取仓库 → 写入基线 → 只提交基线目录 → 推送到 GitHub，一键完成，不需要手动 git（v1.4.0 起）；
+   - 对齐到中枢：先从 GitHub 拉取最新基线并显示对齐计划，确认后安排一个独立于 DSH 的后台任务——关闭 DSH 后自动执行 `Pull -Apply`，成功后重新打开 DSH，失败不重开并弹窗提示日志位置；面板显示“已安排”状态，可取消，并显示上次结果；
    - 内置控制台日志输出窗口，实时呈现比对与提交结果。
 4. **外观快捷切换与全局增强**：
    - 控制面板内外观实时状态与一键切换；
@@ -29,7 +29,7 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
 在 DSH Desktop profile 的 `package.json` 中按版本标签引用：
 
 ```json
-"dsh-desktop-hub": "github:<owner>/dsh-desktop-hub#v1.3.0"
+"dsh-desktop-hub": "github:<owner>/dsh-desktop-hub#v1.4.0"
 ```
 
 并把 `dsh-desktop-hub` 加入 `dsh.profile.bundles`。插件源码不写死任何本机路径，在 profile 的 `cordis.patch.yml` 中配置：
@@ -54,11 +54,14 @@ DeepSeek Harness 原生桌面环境控制与跨机中枢可视化管理面板（
 
 ## 关闭 DSH 后自动对齐（v1.3.0 起）
 
-Pull 按钮依赖同步脚本 `dsh-profile-sync.ps1` 的以下参数（脚本需为同期版本，否则面板提示无法查询状态）：
+面板按钮依赖同步脚本 `dsh-profile-sync.ps1` 的以下参数（脚本需为同期版本，否则面板提示无法查询状态）：
 
 | 面板动作 | 调用 |
 |---|---|
-| 显示对齐计划 | `-Action Pull`（只预演） |
+| 显示对齐计划 | `-Action Pull -SyncRepo`（先拉取仓库，只预演） |
+| 比对差异 | `-Action Diff -SyncRepo` |
+| 发布本机配置 | `-Action Publish`（拉取 → 写入基线 → 提交基线目录 → git push） |
+| 仓库状态 | `-Action RepoStatus -Json` |
 | 确认安排 | `-Action Pull -Schedule -Relaunch -Json` |
 | 查询状态 | `-Action ScheduleStatus -Json` |
 | 取消 | `-Action CancelSchedule -Json` |
