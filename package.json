@@ -1,0 +1,30 @@
+{
+  "name": "dsh-desktop-hub",
+  "version": "1.1.0",
+  "description": "DeepSeek Harness 桌面环境控制与跨机中枢可视化面板 (退出行为/中枢同步/外观快捷设置)",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "package.json",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  }
+}

@@ -1,0 +1,5 @@
+- insert:
+    - id: dsh-desktop-hub
+      name: dsh-desktop-hub
+      config:
+        enabled: true
